@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from gencontent import generate_page
+from gencontent import generate_pages_recursive
 
 def copy_directory(src, dst):
         """Recursively copies all contents from src to dst."""
@@ -36,11 +36,11 @@ def copy_from_static_to_public():
 def main():
     copy_from_static_to_public()
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    from_path = os.path.join(base_dir, "content", "index.md")
+    from_path = os.path.join(base_dir, "content")
     template_path = os.path.join(base_dir, "template.html")
-    dest_path = os.path.join(base_dir, "public", "index.html")
+    dest_path = os.path.join(base_dir, "public")
     
-    generate_page(from_path, template_path, dest_path)
+    generate_pages_recursive(from_path, template_path, dest_path)
 
 
 if __name__ == "__main__":
